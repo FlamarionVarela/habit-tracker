@@ -1,0 +1,22 @@
+{
+  "name": "Rastreador de Hábitos",
+  "short_name": "Hábitos",
+  "description": "Rastreador de hábitos circular com backup Google Drive",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#1F2937",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://twemoji.maxcdn.com/v/14.0.2/72x72/1f4ca.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://twemoji.maxcdn.com/v/14.0.2/svg/1f4ca.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
