@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Rastreador de Hábitos</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Rastreador de hábitos circular com backup Google Drive">
+    <meta name="theme-color" content="#1F2937">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React 18 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel Standalone (para JSX) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Google APIs -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://twemoji.maxcdn.com/v/14.0.2/72x72/1f4ca.png">
+    
+    <style>
+        /* Custom styles for better mobile experience */
+        body {
+            overscroll-behavior: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Loading spinner */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111827;
+            color: white;
+        }
+        
+        /* Hide loading when React loads */
+        .loaded .loading {
+            display: none;
+        }
+        
+        /* Better touch targets for mobile */
+        @media (max-width: 768px) {
+            button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="text-center">
+            <div class="text-4xl mb-4">📊</div>
+            <div class="text-xl">Carregando Rastreador de Hábitos...</div>
+        </div>
+    </div>
+    
+    <!-- React App Container -->
+    <div id="root"></div>
+
+    <!-- React Component Script -->
+    <script type="text/babel">
+        const { useState, useEffect, useCallback, useRef, useMemo } = React;
+        const { 
+            Plus, Settings, Calendar, Edit2, Trash2, BarChart3, Target, TrendingUp, 
+            Filter, Search, RefreshCw, Eye, Flame, Trophy, Clock, Save, CheckCircle, 
+            AlertCircle, Cloud, CloudOff, Download, Upload, FolderOpen 
+        } = lucide;
+
+        // TODO: INSERIR TODO O CÓDIGO DO COMPONENTE REACT AQUI
+        // (O código completo do CircularHabitCalendar component)
+        
+        const CircularHabitCalendar = () => {
+            // TODO: Código completo do componente aqui
+            return React.createElement('div', { className: 'min-h-screen bg-gray-900 p-4' }, 'App carregando...');
+        };
+
+        // Render the app
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(React.createElement(CircularHabitCalendar));
+        
+        // Remove loading screen
+        document.body.classList.add('loaded');
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
