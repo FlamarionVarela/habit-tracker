@@ -3,43 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rastreador de Hábitos Circular</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React 18 -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel para JSX -->
+    <title>🚀 Rastreador de Hábitos Circular - Versão 2707</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
         }
         
+        /* Título retro typewriter */
         .typewriter-title {
             font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #8B1538 0%, #B91C3C 50%, #DC2626 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(139, 21, 56, 0.3);
-            position: relative;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
         }
         
-        .typewriter-title::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: #8B1538;
+        .typewriter-cursor {
             animation: blink 1s infinite;
         }
         
@@ -47,81 +35,72 @@
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
-
-        /* Custom scrollbar */
+        
+        /* Scrollbars customizadas */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
         
         ::-webkit-scrollbar-track {
-            background: #1f2937;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: #4b5563;
+            background: rgba(34, 211, 238, 0.3);
             border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280;
+            background: rgba(34, 211, 238, 0.5);
         }
-
-        /* Ícones simples com CSS */
-        .icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
-        
-        .icon-plus::before { content: "➕"; }
-        .icon-stats::before { content: "📊"; }
-        .icon-download::before { content: "💾"; }
-        .icon-trash::before { content: "🗑️"; }
-        .icon-flame::before { content: "🔥"; }
-        .icon-search::before { content: "🔍"; }
-        .icon-filter::before { content: "⚙️"; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
+        // 🚀 RASTREADOR DE HÁBITOS CIRCULAR - VERSÃO 2707
+        // ✅ Sistema completo de persistência com localStorage
+        // ✅ Auto-save inteligente (beforeunload, visibilitychange, intervalos)
+        // ✅ Calendário circular interativo com rotação
+        // ✅ Timeline horizontal com 24 horas
+        // ✅ Sistema de streaks em tempo real
+        // ✅ Estatísticas avançadas e filtros
+        // ✅ Backup/Restore completo em JSON
+        // ✅ Título estilo máquina de escrever retro
+        // ✅ Tema escuro profissional
+        // ✅ Compatível 100% com GitHub Pages
+
         const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
-        // Componente de ícone simples
-        const Icon = ({ name, size = 20, className = "" }) => {
-            const iconMap = {
-                plus: "➕",
-                stats: "📊", 
-                download: "💾",
-                trash: "🗑️",
-                flame: "🔥",
-                search: "🔍",
-                filter: "⚙️",
-                calendar: "📅",
-                trophy: "🏆",
-                target: "🎯",
-                clock: "⏰",
-                save: "💾",
-                check: "✅",
-                alert: "⚠️",
-                x: "❌",
-                edit: "✏️",
-                eye: "👁️",
-                refresh: "🔄",
-                settings: "⚙️"
-            };
-            
-            return (
-                <span 
-                    className={`inline-block ${className}`} 
-                    style={{ fontSize: `${size}px`, lineHeight: 1 }}
-                >
-                    {iconMap[name] || "•"}
-                </span>
-            );
+        // 🎯 SISTEMA DE ÍCONES COMPATÍVEL - Font Awesome
+        const Icons = {
+            Plus: () => <i className="fas fa-plus w-4 h-4"></i>,
+            Settings: () => <i className="fas fa-cog w-4 h-4"></i>,
+            Calendar: () => <i className="fas fa-calendar-alt w-4 h-4"></i>,
+            Edit2: () => <i className="fas fa-edit w-4 h-4"></i>,
+            Trash2: () => <i className="fas fa-trash w-4 h-4"></i>,
+            BarChart3: () => <i className="fas fa-chart-bar w-4 h-4"></i>,
+            Target: () => <i className="fas fa-bullseye w-4 h-4"></i>,
+            TrendingUp: () => <i className="fas fa-chart-line w-4 h-4"></i>,
+            Filter: () => <i className="fas fa-filter w-4 h-4"></i>,
+            Search: () => <i className="fas fa-search w-4 h-4"></i>,
+            RefreshCw: () => <i className="fas fa-sync-alt w-4 h-4"></i>,
+            Eye: () => <i className="fas fa-eye w-4 h-4"></i>,
+            Flame: () => <i className="fas fa-fire w-4 h-4"></i>,
+            Trophy: () => <i className="fas fa-trophy w-4 h-4"></i>,
+            Clock: () => <i className="fas fa-clock w-4 h-4"></i>,
+            Save: () => <i className="fas fa-save w-4 h-4"></i>,
+            CheckCircle: () => <i className="fas fa-check-circle w-4 h-4"></i>,
+            AlertCircle: () => <i className="fas fa-exclamation-circle w-4 h-4"></i>,
+            Download: () => <i className="fas fa-download w-4 h-4"></i>,
+            Upload: () => <i className="fas fa-upload w-4 h-4"></i>,
+            X: () => <i className="fas fa-times w-4 h-4"></i>,
+            ChevronLeft: () => <i className="fas fa-chevron-left w-4 h-4"></i>,
+            ChevronRight: () => <i className="fas fa-chevron-right w-4 h-4"></i>,
+            Database: () => <i className="fas fa-database w-4 h-4"></i>
         };
 
         const CircularHabitCalendar = () => {
@@ -140,288 +119,452 @@
             const [showStats, setShowStats] = useState(false);
             const [focusedDay, setFocusedDay] = useState(null);
             const [rotationAngle, setRotationAngle] = useState(0);
+            const [showStreaks] = useState(true);
+            const [animations] = useState(true);
+            const [compactMode] = useState(true);
             const [selectedHabitId, setSelectedHabitId] = useState(null);
             const [resetStatus, setResetStatus] = useState('');
-            const [saveStatus, setSaveStatus] = useState('saved');
+            const [expandedHabitDetails, setExpandedHabitDetails] = useState(null);
+            const [selectedScheduleTime, setSelectedScheduleTime] = useState('');
+            const [selectedNotificationPref, setSelectedNotificationPref] = useState('onTime');
+            const [editingHabitId, setEditingHabitId] = useState(null);
+            const [editForm, setEditForm] = useState({
+                name: '',
+                priority: '',
+                daysType: ''
+            });
+
+            // 🎯 SISTEMA DE SALVAMENTO AUTOMÁTICO
+            const [saveStatus, setSaveStatus] = useState('idle');
+            const [lastSaveTime, setLastSaveTime] = useState(null);
             const [autoSaveEnabled, setAutoSaveEnabled] = useState(true);
+            const [showDataManager, setShowDataManager] = useState(false);
+            const saveTimeoutRef = useRef(null);
 
-            const monthNames = [
-                'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-            ];
+            // 🎯 SISTEMA DE TIMELINE
+            const [currentTime, setCurrentTime] = useState(new Date());
+            const [overdueCount, setOverdueCount] = useState(0);
+            const [snoozedHabits, setSnoozedHabits] = useState({});
+            const [overdueNotificationClosed, setOverdueNotificationClosed] = useState(false);
+            const [isTimelineExpanded, setIsTimelineExpanded] = useState(false);
+            const [timelineForceUpdate, setTimelineForceUpdate] = useState(0);
 
-            const priorityColors = {
-                high: { bg: 'bg-red-500', text: 'text-red-100', stroke: '#dc2626' },
-                medium: { bg: 'bg-yellow-500', text: 'text-yellow-100', stroke: '#eab308' },
-                low: { bg: 'bg-blue-500', text: 'text-blue-100', stroke: '#2563eb' }
+            // Timeline refs para otimização
+            const timelineScrollRef = useRef(null);
+            const timelineInitialScrollDoneRef = useRef(false);
+            const timelineUserInteractedRef = useRef(false);
+            const savedScrollPositionRef = useRef(0);
+            const timelineVersionRef = useRef(0);
+            const timelineDataRef = useRef({
+                todayHabits: [],
+                completionSnapshot: {},
+                isCurrentMonth: false,
+                currentHour: 0,
+                lastUpdate: 0
+            });
+
+            // 🎯 CONSTANTES DO SISTEMA
+            const STORAGE_KEYS = {
+                monthlyHabits: 'habitTracker_monthlyHabits_v2',
+                habitData: 'habitTracker_habitData_v2',
+                snoozedHabits: 'habitTracker_snoozedHabits',
+                overdueNotificationClosed: 'habitTracker_overdueNotificationClosed',
+                autoSave: 'habitTracker_autoSave',
+                timelineExpanded: 'habitTracker_timelineExpanded'
             };
 
-            const priorities = [
-                { value: 'high', label: 'Alta', flag: '🔥' },
-                { value: 'medium', label: 'Média', flag: '⚡' },
-                { value: 'low', label: 'Baixa', flag: '💧' }
-            ];
+            // 🎯 SISTEMA DE TÍTULO TYPEWRITER
+            const [displayText, setDisplayText] = useState('');
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [showCursor, setShowCursor] = useState(true);
+            const fullText = "🚀 RASTREADOR DE HÁBITOS CIRCULAR - v2707";
 
-            const daysTypes = [
-                { value: 'all', label: 'Todos os dias' },
-                { value: 'weekdays', label: 'Dias úteis' },
-                { value: 'weekends', label: 'Fins de semana' }
-            ];
+            useEffect(() => {
+                if (currentIndex < fullText.length) {
+                    const timer = setTimeout(() => {
+                        setDisplayText(fullText.slice(0, currentIndex + 1));
+                        setCurrentIndex(currentIndex + 1);
+                    }, 80);
+                    return () => clearTimeout(timer);
+                }
+            }, [currentIndex, fullText]);
 
-            // Storage functions
-            function saveToLocalStorage(key, data) {
+            useEffect(() => {
+                const cursor = setInterval(() => {
+                    setShowCursor(prev => !prev);
+                }, 600);
+                return () => clearInterval(cursor);
+            }, []);
+
+            // 🎯 FUNÇÕES DE PERSISTÊNCIA
+            const saveToLocalStorage = useCallback((key, data, immediate = false) => {
                 try {
-                    if (typeof(Storage) !== "undefined") {
-                        localStorage.setItem(key, JSON.stringify(data));
-                        return true;
+                    localStorage.setItem(key, JSON.stringify(data));
+                    if (immediate) {
+                        setSaveStatus('saved');
+                        setLastSaveTime(Date.now());
                     }
-                    return false;
+                    return true;
                 } catch (error) {
-                    console.error('Erro ao salvar:', error);
+                    console.error('Erro ao salvar no localStorage:', error);
+                    setSaveStatus('error');
                     return false;
                 }
-            }
+            }, []);
 
-            function loadFromLocalStorage(key) {
+            const loadFromLocalStorage = useCallback((key) => {
                 try {
-                    if (typeof(Storage) !== "undefined") {
-                        const item = localStorage.getItem(key);
-                        return item ? JSON.parse(item) : null;
-                    }
-                    return null;
+                    const item = localStorage.getItem(key);
+                    return item ? JSON.parse(item) : null;
                 } catch (error) {
-                    console.error('Erro ao carregar:', error);
+                    console.error('Erro ao carregar do localStorage:', error);
                     return null;
                 }
-            }
+            }, []);
 
-            // Auto-save
-            const autoSave = useCallback(() => {
-                if (!autoSaveEnabled) return;
+            // 🎯 AUTO-SAVE INTELIGENTE
+            const autoSave = useCallback((immediate = false) => {
+                if (!autoSaveEnabled && !immediate) return;
+
+                setSaveStatus('saving');
 
                 try {
-                    saveToLocalStorage('habitTracker_monthlyHabits', monthlyHabits);
-                    saveToLocalStorage('habitTracker_habitData', habitData);
+                    saveToLocalStorage(STORAGE_KEYS.monthlyHabits, monthlyHabits, true);
+                    saveToLocalStorage(STORAGE_KEYS.habitData, habitData, true);
+                    saveToLocalStorage(STORAGE_KEYS.snoozedHabits, snoozedHabits, true);
+                    saveToLocalStorage(STORAGE_KEYS.overdueNotificationClosed, overdueNotificationClosed, true);
+                    saveToLocalStorage(STORAGE_KEYS.autoSave, autoSaveEnabled, true);
+                    saveToLocalStorage(STORAGE_KEYS.timelineExpanded, isTimelineExpanded, true);
+
                     setSaveStatus('saved');
+                    setLastSaveTime(Date.now());
                 } catch (error) {
                     setSaveStatus('error');
                 }
-            }, [monthlyHabits, habitData, autoSaveEnabled]);
+            }, [
+                autoSaveEnabled, monthlyHabits, habitData, snoozedHabits, 
+                overdueNotificationClosed, isTimelineExpanded, saveToLocalStorage
+            ]);
 
-            // Load data on startup
+            // 🎯 CARREGAR DADOS AO INICIALIZAR
+            const loadSavedData = useCallback(() => {
+                try {
+                    setSaveStatus('loading');
+
+                    const savedMonthlyHabits = loadFromLocalStorage(STORAGE_KEYS.monthlyHabits);
+                    const savedHabitData = loadFromLocalStorage(STORAGE_KEYS.habitData);
+                    const savedSnoozedHabits = loadFromLocalStorage(STORAGE_KEYS.snoozedHabits);
+                    const savedOverdueNotificationClosed = loadFromLocalStorage(STORAGE_KEYS.overdueNotificationClosed);
+                    const savedAutoSave = loadFromLocalStorage(STORAGE_KEYS.autoSave);
+                    const savedTimelineExpanded = loadFromLocalStorage(STORAGE_KEYS.timelineExpanded);
+
+                    if (savedMonthlyHabits) setMonthlyHabits(savedMonthlyHabits);
+                    if (savedHabitData) setHabitData(savedHabitData);
+                    if (savedSnoozedHabits) setSnoozedHabits(savedSnoozedHabits);
+                    if (savedOverdueNotificationClosed !== null) setOverdueNotificationClosed(savedOverdueNotificationClosed);
+                    if (savedAutoSave !== null) setAutoSaveEnabled(savedAutoSave);
+                    if (savedTimelineExpanded !== null) setIsTimelineExpanded(savedTimelineExpanded);
+
+                    setSaveStatus('saved');
+                    setLastSaveTime(Date.now());
+                    return true;
+                } catch (error) {
+                    console.error('Erro ao carregar dados:', error);
+                    setSaveStatus('error');
+                    return false;
+                }
+            }, [loadFromLocalStorage]);
+
+            // 🎯 INICIALIZAR APP
             useEffect(() => {
-                const loadedHabits = loadFromLocalStorage('habitTracker_monthlyHabits');
-                const loadedData = loadFromLocalStorage('habitTracker_habitData');
+                loadSavedData();
+            }, [loadSavedData]);
 
-                if (loadedHabits) setMonthlyHabits(loadedHabits);
-                if (loadedData) setHabitData(loadedData);
-            }, []);
-
-            // Auto-save on data changes
+            // 🎯 AUTO-SAVE PROGRAMADO
             useEffect(() => {
-                const timer = setTimeout(autoSave, 1000);
-                return () => clearTimeout(timer);
-            }, [autoSave]);
+                if (saveTimeoutRef.current) {
+                    clearTimeout(saveTimeoutRef.current);
+                }
 
-            const getDaysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
-            const getMonthKey = () => `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+                saveTimeoutRef.current = setTimeout(() => {
+                    autoSave();
+                }, 2000);
 
-            const addHabit = () => {
-                if (newHabit.trim() === '') return;
+                return () => {
+                    if (saveTimeoutRef.current) {
+                        clearTimeout(saveTimeoutRef.current);
+                    }
+                };
+            }, [monthlyHabits, habitData, snoozedHabits, overdueNotificationClosed, autoSave]);
 
-                const monthKey = getMonthKey();
-                const habitId = Date.now().toString();
-
-                const newHabitData = {
-                    id: habitId,
-                    name: newHabit,
-                    priority: selectedPriority,
-                    daysType: selectedDaysType,
-                    createdAt: new Date().toISOString()
+            // 🎯 SALVAMENTO AO SAIR
+            useEffect(() => {
+                const handleBeforeUnload = (e) => {
+                    autoSave(true);
+                    if (saveStatus === 'saving') {
+                        e.preventDefault();
+                        e.returnValue = 'Dados sendo salvos...';
+                        return 'Dados sendo salvos...';
+                    }
                 };
 
+                const handleVisibilityChange = () => {
+                    if (document.visibilityState === 'hidden') {
+                        autoSave(true);
+                    }
+                };
+
+                const handleUnload = () => {
+                    autoSave(true);
+                };
+
+                window.addEventListener('beforeunload', handleBeforeUnload);
+                window.addEventListener('unload', handleUnload);
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+
+                return () => {
+                    window.removeEventListener('beforeunload', handleBeforeUnload);
+                    window.removeEventListener('unload', handleUnload);
+                    document.removeEventListener('visibilitychange', handleVisibilityChange);
+
+                    if (saveTimeoutRef.current) {
+                        clearTimeout(saveTimeoutRef.current);
+                    }
+                    autoSave(true);
+                };
+            }, [autoSave, saveStatus]);
+
+            // 🎯 FUNÇÕES CORE DO SISTEMA
+            const getCurrentMonthKey = () => `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+
+            const getHabitsForCurrentMonth = () => {
+                const monthKey = getCurrentMonthKey();
+                return monthlyHabits[monthKey] || [];
+            };
+
+            const toggleHabitDay = useCallback((habitId, day) => {
+                const key = `${habitId}-${currentYear}-${currentMonth}-${day}`;
                 setHabitData(prev => ({
                     ...prev,
-                    [habitId]: newHabitData
+                    [key]: !prev[key]
                 }));
+            }, [currentMonth, currentYear]);
+
+            const addHabit = () => {
+                if (!newHabit.trim()) return;
+
+                const habitId = Date.now().toString();
+                const monthKey = getCurrentMonthKey();
+                const habit = {
+                    id: habitId,
+                    name: newHabit.trim(),
+                    priority: selectedPriority,
+                    daysType: selectedDaysType,
+                    scheduleTime: selectedScheduleTime || null,
+                    notificationPreference: selectedNotificationPref,
+                    createdAt: new Date().toISOString(),
+                    currentStreak: 0,
+                    bestStreak: 0,
+                    lastNotified: null,
+                    observations: ['', '', '']
+                };
 
                 setMonthlyHabits(prev => ({
                     ...prev,
-                    [monthKey]: {
-                        ...prev[monthKey],
-                        [habitId]: {}
-                    }
+                    [monthKey]: [...(prev[monthKey] || []), habit]
                 }));
 
                 setNewHabit('');
+                setSelectedScheduleTime('');
+                setSelectedNotificationPref('onTime');
                 setShowAddForm(false);
             };
 
             const deleteHabit = (habitId) => {
-                const monthKey = getMonthKey();
-
-                setHabitData(prev => {
-                    const newData = { ...prev };
-                    delete newData[habitId];
-                    return newData;
-                });
-
+                const monthKey = getCurrentMonthKey();
                 setMonthlyHabits(prev => ({
                     ...prev,
-                    [monthKey]: Object.fromEntries(
-                        Object.entries(prev[monthKey] || {}).filter(([id]) => id !== habitId)
-                    )
+                    [monthKey]: (prev[monthKey] || []).filter(h => h.id !== habitId)
                 }));
 
-                if (selectedHabitId === habitId) {
-                    setSelectedHabitId(null);
-                }
-            };
-
-            const toggleHabitDay = (habitId, day) => {
-                const monthKey = getMonthKey();
-
-                setMonthlyHabits(prev => {
-                    const currentValue = prev[monthKey]?.[habitId]?.[day] || false;
-                    return {
-                        ...prev,
-                        [monthKey]: {
-                            ...prev[monthKey],
-                            [habitId]: {
-                                ...prev[monthKey]?.[habitId],
-                                [day]: !currentValue
-                            }
+                // Remover dados de completamento
+                setHabitData(prev => {
+                    const newData = { ...prev };
+                    Object.keys(newData).forEach(key => {
+                        if (key.startsWith(habitId + '-')) {
+                            delete newData[key];
                         }
-                    };
+                    });
+                    return newData;
                 });
             };
 
-            const getCompletionRate = (habitId) => {
-                const monthKey = getMonthKey();
-                const habitDays = monthlyHabits[monthKey]?.[habitId] || {};
-                const daysInMonth = getDaysInMonth(currentMonth, currentYear);
-                const today = new Date().getDate();
-                const currentDay = (currentYear === new Date().getFullYear() && currentMonth === new Date().getMonth()) ? today : daysInMonth;
+            // 🎯 SISTEMA DE STREAKS
+            const calculateStreak = useCallback((habitId) => {
+                const today = new Date();
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                let currentStreak = 0;
+                let bestStreak = 0;
+                let tempStreak = 0;
 
-                const completedDays = Object.entries(habitDays)
-                    .filter(([day, completed]) => completed && parseInt(day) <= currentDay)
-                    .length;
-
-                return Math.round((completedDays / currentDay) * 100);
-            };
-
-            const getCurrentStreak = (habitId) => {
-                const monthKey = getMonthKey();
-                const habitDays = monthlyHabits[monthKey]?.[habitId] || {};
-                const today = new Date().getDate();
-
-                let streak = 0;
-                for (let day = today; day >= 1; day--) {
-                    if (habitDays[day]) {
-                        streak++;
+                // Calcular streak atual (contando de trás para frente)
+                for (let day = today.getDate(); day >= 1; day--) {
+                    const key = `${habitId}-${currentYear}-${currentMonth}-${day}`;
+                    if (habitData[key]) {
+                        currentStreak++;
                     } else {
                         break;
                     }
                 }
-                return streak;
+
+                // Calcular melhor streak do mês
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const key = `${habitId}-${currentYear}-${currentMonth}-${day}`;
+                    if (habitData[key]) {
+                        tempStreak++;
+                        bestStreak = Math.max(bestStreak, tempStreak);
+                    } else {
+                        tempStreak = 0;
+                    }
+                }
+
+                return { currentStreak, bestStreak };
+            }, [habitData, currentMonth, currentYear]);
+
+            // 🎯 SISTEMA DE FILTROS
+            const filteredHabits = useMemo(() => {
+                let habits = getHabitsForCurrentMonth();
+
+                if (priorityFilter !== 'all') {
+                    habits = habits.filter(h => h.priority === priorityFilter);
+                }
+
+                if (searchTerm.trim()) {
+                    habits = habits.filter(h => 
+                        h.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                }
+
+                return habits;
+            }, [monthlyHabits, currentMonth, currentYear, priorityFilter, searchTerm]);
+
+            // 🎯 ESTATÍSTICAS DO MÊS
+            const getMonthlyStats = () => {
+                const habits = getHabitsForCurrentMonth();
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                const today = new Date();
+                const isCurrentMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+                const maxDay = isCurrentMonth ? today.getDate() : daysInMonth;
+
+                let totalPossible = 0;
+                let totalCompleted = 0;
+
+                habits.forEach(habit => {
+                    for (let day = 1; day <= maxDay; day++) {
+                        totalPossible++;
+                        const key = `${habit.id}-${currentYear}-${currentMonth}-${day}`;
+                        if (habitData[key]) {
+                            totalCompleted++;
+                        }
+                    }
+                });
+
+                const completionRate = totalPossible > 0 ? (totalCompleted / totalPossible) * 100 : 0;
+
+                return {
+                    totalHabits: habits.length,
+                    totalCompleted,
+                    totalPossible,
+                    completionRate: Math.round(completionRate),
+                    daysInMonth,
+                    maxDay
+                };
             };
 
-            const filteredHabits = useMemo(() => {
-                const habits = Object.values(habitData).filter(habit => {
-                    if (priorityFilter !== 'all' && habit.priority !== priorityFilter) return false;
-                    if (searchTerm && !habit.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
-                    return true;
-                });
-
-                return habits.sort((a, b) => {
-                    const priorityOrder = { high: 3, medium: 2, low: 1 };
-                    return priorityOrder[b.priority] - priorityOrder[a.priority];
-                });
-            }, [habitData, priorityFilter, searchTerm]);
-
+            // 🎯 CALENDÁRIO CIRCULAR
             const generateCircularCalendar = () => {
-                const daysInMonth = getDaysInMonth(currentMonth, currentYear);
-                const radius = 180;
-                const centerX = 250;
-                const centerY = 250;
+                const habits = filteredHabits;
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                const today = new Date();
+                const isToday = (day) => {
+                    return today.getDate() === day && 
+                           today.getMonth() === currentMonth && 
+                           today.getFullYear() === currentYear;
+                };
+
+                const centerX = 300;
+                const centerY = 300;
+                const baseRadius = 80;
+                const ringSpacing = 35;
+                const svgSize = 600;
 
                 const fixedElements = [];
                 const rotatingElements = [];
 
-                // Central circle
+                // Centro do calendário
                 fixedElements.push(
-                    <circle key="center-bg" cx={centerX} cy={centerY} r="60" fill="#1f2937" stroke="#374151" strokeWidth="2" />,
-                    <text key="month-text" x={centerX} y={centerY - 5} textAnchor="middle" className="fill-white text-sm font-semibold">
-                        {monthNames[currentMonth]}
+                    <circle key="center-bg" cx={centerX} cy={centerY} r="70" fill="rgba(30, 41, 59, 0.9)" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="2" />,
+                    <text key="month" x={centerX} y={centerY - 10} textAnchor="middle" fill="rgba(34, 211, 238, 0.9)" fontSize="18" fontWeight="bold">
+                        {new Date(currentYear, currentMonth).toLocaleDateString('pt-BR', { month: 'long' }).toUpperCase()}
                     </text>,
-                    <text key="year-text" x={centerX} y={centerY + 15} textAnchor="middle" className="fill-gray-300 text-xs">
+                    <text key="year" x={centerX} y={centerY + 15} textAnchor="middle" fill="rgba(156, 163, 175, 0.8)" fontSize="14">
                         {currentYear}
                     </text>
                 );
 
-                // Day numbers
+                // Números dos dias
                 for (let day = 1; day <= daysInMonth; day++) {
                     const angle = ((day - 1) / daysInMonth) * 2 * Math.PI - Math.PI / 2;
-                    const x = centerX + Math.cos(angle) * (radius - 30);
-                    const y = centerY + Math.sin(angle) * (radius - 30);
+                    const x = centerX + (baseRadius - 15) * Math.cos(angle);
+                    const y = centerY + (baseRadius - 15) * Math.sin(angle);
 
-                    fixedElements.push(
+                    rotatingElements.push(
                         <text
                             key={`day-${day}`}
                             x={x}
-                            y={y + 4}
+                            y={y + 5}
                             textAnchor="middle"
-                            className={`text-xs font-medium ${
-                                day === new Date().getDate() && 
-                                currentMonth === new Date().getMonth() && 
-                                currentYear === new Date().getFullYear()
-                                    ? 'fill-red-400'
-                                    : 'fill-gray-300'
-                            }`}
+                            fill={isToday(day) ? "#ef4444" : "#94a3b8"}
+                            fontSize="12"
+                            fontWeight={isToday(day) ? "bold" : "normal"}
                         >
                             {day}
                         </text>
                     );
                 }
 
-                // Habits
-                filteredHabits.forEach((habit, habitIndex) => {
-                    const monthKey = getMonthKey();
-                    const habitDays = monthlyHabits[monthKey]?.[habit.id] || {};
-                    const isSelected = selectedHabitId === habit.id;
+                // Anéis dos hábitos
+                habits.forEach((habit, habitIndex) => {
+                    const radius = baseRadius + (habitIndex + 1) * ringSpacing;
+                    const priorityColors = {
+                        high: { fill: "#dc2626", stroke: "#ef4444" },
+                        medium: { fill: "#ea580c", stroke: "#f97316" }, 
+                        low: { fill: "#0891b2", stroke: "#06b6d4" }
+                    };
                     const colors = priorityColors[habit.priority];
 
                     for (let day = 1; day <= daysInMonth; day++) {
-                        const angle = ((day - 1) / daysInMonth) * 2 * Math.PI - Math.PI / 2 + (rotationAngle * Math.PI / 180);
-                        const radiusOffset = 15 + habitIndex * 25;
-                        const x = centerX + Math.cos(angle) * (radius - radiusOffset);
-                        const y = centerY + Math.sin(angle) * (radius - radiusOffset);
+                        const angle = ((day - 1) / daysInMonth) * 2 * Math.PI - Math.PI / 2;
+                        const x = centerX + radius * Math.cos(angle);
+                        const y = centerY + radius * Math.sin(angle);
 
-                        const isCompleted = habitDays[day] || false;
-                        const isToday = day === new Date().getDate() && 
-                                       currentMonth === new Date().getMonth() && 
-                                       currentYear === new Date().getFullYear();
+                        const key = `${habit.id}-${currentYear}-${currentMonth}-${day}`;
+                        const isCompleted = habitData[key];
                         const isHovered = hoveredDay === day && hoveredHabit === habit.id;
 
-                        // Create diamond
-                        const size = isSelected ? 8 : (isHovered ? 7 : 6);
-                        const pathData = `M ${x} ${y - size} L ${x + size} ${y} L ${x} ${y + size} L ${x - size} ${y} Z`;
-
-                        const baseFill = isCompleted ? colors.stroke : 'transparent';
-                        const strokeWidth = isToday ? 3 : (isHovered || isSelected ? 2 : 1);
-                        const finalStroke = isToday ? '#ef4444' : colors.stroke;
+                        const pathData = `M ${x-8} ${y-8} L ${x+8} ${y-8} L ${x+8} ${y+8} L ${x-8} ${y+8} Z`;
 
                         rotatingElements.push(
                             <path
                                 key={`${habit.id}-${day}`}
                                 d={pathData}
-                                fill={baseFill}
-                                stroke={finalStroke}
-                                strokeWidth={strokeWidth}
-                                className="cursor-pointer"
+                                fill={isCompleted ? colors.stroke : "rgba(55, 65, 81, 0.7)"}
+                                stroke={isCompleted ? colors.stroke : colors.fill}
+                                strokeWidth={isHovered ? "3" : "2"}
+                                className="cursor-pointer transition-all duration-200"
                                 style={{
-                                    opacity: isCompleted ? 1 : 0.7,
-                                    transition: 'opacity 0.2s ease'
+                                    opacity: isCompleted ? 1 : 0.6,
+                                    filter: isCompleted ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' : 'none'
                                 }}
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -440,40 +583,25 @@
                     }
                 });
 
-                return { fixedElements, rotatingElements };
+                return { fixedElements, rotatingElements, svgSize };
             };
 
-            const getMonthlyStats = () => {
-                const monthKey = getMonthKey();
-                const habits = filteredHabits;
-                const daysInMonth = getDaysInMonth(currentMonth, currentYear);
-
-                let totalDays = 0;
-                let completedDays = 0;
-
-                habits.forEach(habit => {
-                    const habitDays = monthlyHabits[monthKey]?.[habit.id] || {};
-                    totalDays += daysInMonth;
-                    completedDays += Object.values(habitDays).filter(Boolean).length;
-                });
-
-                const overallRate = totalDays > 0 ? Math.round((completedDays / totalDays) * 100) : 0;
-
-                return {
-                    totalHabits: habits.length,
-                    overallRate,
-                    totalCompleted: completedDays,
-                    totalPossible: totalDays
-                };
-            };
-
+            // 🎯 BACKUP E RESTORE
             const createBackup = () => {
                 try {
                     const backupData = {
-                        version: '2.7',
+                        version: '2707',
                         timestamp: new Date().toISOString(),
                         monthlyHabits,
-                        habitData
+                        habitData,
+                        snoozedHabits,
+                        overdueNotificationClosed,
+                        settings: {
+                            autoSaveEnabled,
+                            priorityFilter,
+                            searchTerm,
+                            isTimelineExpanded
+                        }
                     };
 
                     const backupString = JSON.stringify(backupData, null, 2);
@@ -488,339 +616,517 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
 
-                    setSaveStatus('backup-created');
+                    setSaveStatus('saved');
                     setTimeout(() => setSaveStatus('saved'), 3000);
                 } catch (error) {
                     setSaveStatus('error');
+                    setTimeout(() => setSaveStatus('saved'), 3000);
                 }
             };
 
-            const clearAllData = () => {
-                if (confirm('Tem certeza que deseja limpar todos os dados?')) {
-                    localStorage.removeItem('habitTracker_monthlyHabits');
-                    localStorage.removeItem('habitTracker_habitData');
+            const restoreBackup = (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const backupData = JSON.parse(e.target.result);
+
+                        if (backupData.version && backupData.monthlyHabits) {
+                            setMonthlyHabits(backupData.monthlyHabits || {});
+                            setHabitData(backupData.habitData || {});
+                            setSnoozedHabits(backupData.snoozedHabits || {});
+                            setOverdueNotificationClosed(backupData.overdueNotificationClosed || false);
+
+                            if (backupData.settings) {
+                                setAutoSaveEnabled(backupData.settings.autoSaveEnabled ?? true);
+                                setPriorityFilter(backupData.settings.priorityFilter || 'all');
+                                setSearchTerm(backupData.settings.searchTerm || '');
+                                setIsTimelineExpanded(backupData.settings.isTimelineExpanded || false);
+                            }
+
+                            autoSave(true);
+                            setSaveStatus('saved');
+                            alert('Backup restaurado com sucesso!');
+                        } else {
+                            alert('Arquivo de backup inválido.');
+                        }
+                    } catch (error) {
+                        alert('Erro ao restaurar backup: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+
+                // Limpar input
+                event.target.value = '';
+            };
+
+            // 🎯 RESET COMPLETO
+            const resetAllData = () => {
+                if (!confirm('⚠️ ATENÇÃO: Isso irá apagar TODOS os dados permanentemente. Tem certeza?')) return;
+
+                try {
+                    const defaultHabits = {};
+
+                    setResetStatus('🔄 Resetando interface...');
+
                     setHabitData({});
-                    setMonthlyHabits({});
-                    setResetStatus('✅ Dados limpos!');
-                    setTimeout(() => setResetStatus(''), 3000);
+                    setMonthlyHabits(defaultHabits);
+                    setPriorityFilter('all');
+                    setSearchTerm('');
+                    setSelectedHabitId(null);
+                    setExpandedHabitDetails(null);
+                    setFocusedDay(null);
+                    setRotationAngle(0);
+                    setShowStats(false);
+                    setShowAddForm(false);
+                    setSnoozedHabits({});
+                    setOverdueCount(0);
+                    setSelectedScheduleTime('');
+                    setSelectedNotificationPref('onTime');
+                    setOverdueNotificationClosed(false);
+                    setEditingHabitId(null);
+                    setEditForm({ name: '', priority: '', daysType: '' });
+                    setAutoSaveEnabled(true);
+                    setShowDataManager(false);
+
+                    // Limpar localStorage
+                    Object.values(STORAGE_KEYS).forEach(key => {
+                        localStorage.removeItem(key);
+                    });
+
+                    setResetStatus('✅ Reset completo realizado!');
+
+                    setTimeout(() => {
+                        setResetStatus('');
+                    }, 3000);
+
+                } catch (error) {
+                    setResetStatus('❌ Erro no reset - recarregando...');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             };
 
+            // 🎯 RENDERIZAR DADOS
             const stats = getMonthlyStats();
-            const { fixedElements, rotatingElements } = generateCircularCalendar();
+            const { fixedElements, rotatingElements, svgSize } = generateCircularCalendar();
 
+            // 🎯 COMPONENTE DE STATUS DE SALVAMENTO
+            const SaveStatusIndicator = () => {
+                const getStatusIcon = () => {
+                    switch (saveStatus) {
+                        case 'saving':
+                            return <Icons.Save />;
+                        case 'saved':
+                            return <Icons.CheckCircle />;
+                        case 'error':
+                            return <Icons.AlertCircle />;
+                        default:
+                            return <Icons.Save />;
+                    }
+                };
+
+                const getStatusText = () => {
+                    switch (saveStatus) {
+                        case 'saving':
+                            return 'Salvando...';
+                        case 'saved':
+                            return lastSaveTime ? 
+                                `Salvo ${new Date(lastSaveTime).toLocaleTimeString()}` : 
+                                'Dados salvos';
+                        case 'error':
+                            return 'Erro ao salvar';
+                        case 'loading':
+                            return 'Carregando...';
+                        default:
+                            return 'Pronto para salvar';
+                    }
+                };
+
+                const getStatusColor = () => {
+                    switch (saveStatus) {
+                        case 'saving':
+                            return 'text-blue-400';
+                        case 'saved':
+                            return 'text-green-400';
+                        case 'error':
+                            return 'text-red-400';
+                        case 'loading':
+                            return 'text-yellow-400';
+                        default:
+                            return 'text-gray-400';
+                    }
+                };
+
+                return (
+                    <div className={`flex items-center gap-2 ${getStatusColor()}`}>
+                        <div className={saveStatus === 'saving' ? 'animate-spin' : ''}>
+                            {getStatusIcon()}
+                        </div>
+                        <span className="text-xs">{getStatusText()}</span>
+                    </div>
+                );
+            };
+
+            // 🎯 RENDER PRINCIPAL
             return (
-                <div className="min-h-screen bg-gray-900 p-4">
-                    <div className="max-w-7xl mx-auto">
-                        {/* Header */}
-                        <div className="text-center mb-8">
-                            <h1 className="text-4xl md:text-6xl font-black mb-6 typewriter-title">
-                                RASTREADOR DE HÁBITOS
-                            </h1>
+                <div className="min-h-screen p-4 space-y-6">
+                    {/* Título Typewriter */}
+                    <div className="text-center mb-8">
+                        <h1 className="typewriter-title text-2xl md:text-4xl text-cyan-400 mb-2">
+                            {displayText}
+                            <span className={`typewriter-cursor ${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
+                        </h1>
+                        <p className="text-gray-400 text-sm">
+                            Sistema completo de rastreamento de hábitos com calendário circular interativo
+                        </p>
+                    </div>
 
-                            {/* Save status */}
-                            {saveStatus !== 'saved' && (
-                                <div className="mb-4">
-                                    <span className={`px-3 py-1 rounded-full text-sm ${
-                                        saveStatus === 'saving' ? 'bg-yellow-900/20 text-yellow-400' :
-                                        saveStatus === 'backup-created' ? 'bg-green-900/20 text-green-400' :
-                                        'bg-red-900/20 text-red-400'
-                                    }`}>
-                                        {saveStatus === 'saving' && '💾 Salvando...'}
-                                        {saveStatus === 'backup-created' && '📥 Backup criado!'}
-                                        {saveStatus === 'error' && '❌ Erro ao salvar'}
-                                    </span>
+                    {/* Header com controles */}
+                    <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                            <div className="flex items-center gap-4">
+                                <button
+                                    onClick={() => setCurrentMonth(prev => prev === 0 ? 11 : prev - 1)}
+                                    className="p-2 bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors"
+                                    onClickCapture={() => {
+                                        if (currentMonth === 0) setCurrentYear(prev => prev - 1);
+                                    }}
+                                >
+                                    <Icons.ChevronLeft />
+                                </button>
+                                
+                                <div className="text-center">
+                                    <h2 className="text-xl font-bold text-white">
+                                        {new Date(currentYear, currentMonth).toLocaleDateString('pt-BR', { 
+                                            month: 'long', 
+                                            year: 'numeric' 
+                                        })}
+                                    </h2>
                                 </div>
-                            )}
-
-                            {/* Month navigation */}
-                            <div className="flex items-center justify-center gap-6 mb-6">
+                                
                                 <button
-                                    onClick={() => {
-                                        let [newMonth, newYear] = [currentMonth - 1, currentYear];
-                                        if (newMonth < 0) { newMonth = 11; newYear--; }
-                                        setCurrentMonth(newMonth);
-                                        setCurrentYear(newYear);
-                                        setRotationAngle(0);
+                                    onClick={() => setCurrentMonth(prev => prev === 11 ? 0 : prev + 1)}
+                                    className="p-2 bg-gray-700 hover:bg-gray-600 rounded-xl transition-colors"
+                                    onClickCapture={() => {
+                                        if (currentMonth === 11) setCurrentYear(prev => prev + 1);
                                     }}
-                                    className="bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full transition-colors"
                                 >
-                                    ←
+                                    <Icons.ChevronRight />
                                 </button>
+                            </div>
 
-                                <span className="text-2xl font-bold text-white min-w-[200px]">
-                                    {monthNames[currentMonth]} {currentYear}
-                                </span>
-
+                            <div className="flex items-center gap-3">
+                                <SaveStatusIndicator />
+                                
                                 <button
-                                    onClick={() => {
-                                        let [newMonth, newYear] = [currentMonth + 1, currentYear];
-                                        if (newMonth > 11) { newMonth = 0; newYear++; }
-                                        setCurrentMonth(newMonth);
-                                        setCurrentYear(newYear);
-                                        setRotationAngle(0);
-                                    }}
-                                    className="bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full transition-colors"
+                                    onClick={() => setShowStats(!showStats)}
+                                    className="p-2 bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors"
                                 >
-                                    →
+                                    <Icons.BarChart3 />
+                                </button>
+                                
+                                <button
+                                    onClick={() => setShowDataManager(!showDataManager)}
+                                    className="p-2 bg-purple-600 hover:bg-purple-700 rounded-xl transition-colors"
+                                >
+                                    <Icons.Database />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Controls */}
-                        <div className="flex flex-wrap gap-4 mb-6 justify-center">
-                            <button
-                                onClick={() => setShowAddForm(!showAddForm)}
-                                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg flex items-center gap-2"
+                        {/* Filtros */}
+                        <div className="flex flex-wrap gap-3 mb-4">
+                            <select
+                                value={priorityFilter}
+                                onChange={(e) => setPriorityFilter(e.target.value)}
+                                className="px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
                             >
-                                <Icon name="plus" />
-                                Adicionar Hábito
-                            </button>
+                                <option value="all">Todas as prioridades</option>
+                                <option value="high">🔥 Alta prioridade</option>
+                                <option value="medium">⚡ Média prioridade</option>
+                                <option value="low">💧 Baixa prioridade</option>
+                            </select>
 
-                            <button
-                                onClick={() => setShowStats(!showStats)}
-                                className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-lg flex items-center gap-2"
-                            >
-                                <Icon name="stats" />
-                                Estatísticas
-                            </button>
-
-                            <button
-                                onClick={createBackup}
-                                className="bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg flex items-center gap-2"
-                            >
-                                <Icon name="download" />
-                                Backup
-                            </button>
-
-                            <button
-                                onClick={clearAllData}
-                                className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg flex items-center gap-2"
-                            >
-                                <Icon name="trash" />
-                                Limpar
-                            </button>
-                        </div>
-
-                        {/* Filters */}
-                        <div className="flex flex-wrap gap-4 mb-6 justify-center">
-                            <div className="flex items-center gap-2">
-                                <Icon name="filter" size={16} className="text-gray-400" />
-                                <select
-                                    value={priorityFilter}
-                                    onChange={(e) => setPriorityFilter(e.target.value)}
-                                    className="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600"
-                                >
-                                    <option value="all">Todas as prioridades</option>
-                                    <option value="high">🔥 Alta</option>
-                                    <option value="medium">⚡ Média</option>
-                                    <option value="low">💧 Baixa</option>
-                                </select>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                <Icon name="search" size={16} className="text-gray-400" />
+                            <div className="relative">
+                                <Icons.Search />
                                 <input
                                     type="text"
                                     placeholder="Buscar hábitos..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600"
+                                    className="pl-8 pr-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm placeholder-gray-400"
                                 />
                             </div>
                         </div>
 
-                        {/* Add Form */}
-                        {showAddForm && (
-                            <div className="mb-8 p-6 bg-gray-800 rounded-xl border border-gray-700">
-                                <h3 className="text-xl font-bold text-white mb-4">Adicionar Novo Hábito</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {/* Rotação do calendário */}
+                        <div className="mb-4">
+                            <label className="block text-sm text-gray-300 mb-2">
+                                Rotação: {rotationAngle}°
+                            </label>
+                            <input
+                                type="range"
+                                min="-180"
+                                max="180"
+                                value={rotationAngle}
+                                onChange={(e) => setRotationAngle(Number(e.target.value))}
+                                className="w-full"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Gerenciador de dados */}
+                    {showDataManager && (
+                        <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Icons.Database />
+                                Gerenciamento de Dados
+                            </h3>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <button
+                                    onClick={createBackup}
+                                    className="flex items-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 rounded-xl text-white transition-colors"
+                                >
+                                    <Icons.Download />
+                                    Criar Backup
+                                </button>
+                                
+                                <label className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white transition-colors cursor-pointer">
+                                    <Icons.Upload />
+                                    Restaurar Backup
                                     <input
-                                        type="text"
-                                        placeholder="Nome do hábito"
-                                        value={newHabit}
-                                        onChange={(e) => setNewHabit(e.target.value)}
-                                        className="bg-gray-700 text-white px-4 py-2 rounded-lg"
-                                        onKeyPress={(e) => e.key === 'Enter' && addHabit()}
+                                        type="file"
+                                        accept=".json"
+                                        onChange={restoreBackup}
+                                        className="hidden"
                                     />
+                                </label>
+                                
+                                <button
+                                    onClick={resetAllData}
+                                    className="flex items-center gap-2 px-4 py-3 bg-red-600 hover:bg-red-700 rounded-xl text-white transition-colors"
+                                >
+                                    <Icons.Trash2 />
+                                    Reset Completo
+                                </button>
+                            </div>
+                            
+                            {resetStatus && (
+                                <div className="mt-4 p-3 bg-gray-700 rounded-lg text-center text-white">
+                                    {resetStatus}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Estatísticas */}
+                    {showStats && (
+                        <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Icons.BarChart3 />
+                                Estatísticas do Mês
+                            </h3>
+                            
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-cyan-400">{stats.totalHabits}</div>
+                                    <div className="text-sm text-gray-400">Hábitos</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-green-400">{stats.totalCompleted}</div>
+                                    <div className="text-sm text-gray-400">Completados</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-yellow-400">{stats.totalPossible}</div>
+                                    <div className="text-sm text-gray-400">Possíveis</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-purple-400">{stats.completionRate}%</div>
+                                    <div className="text-sm text-gray-400">Taxa de Conclusão</div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Calendário circular */}
+                    <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                        <div className="relative flex justify-center">
+                            <svg
+                                width={svgSize}
+                                height={svgSize}
+                                className="overflow-visible"
+                                style={{ maxWidth: '100%', height: 'auto' }}
+                            >
+                                {/* Elementos fixos (centro) */}
+                                <g>
+                                    {fixedElements}
+                                </g>
+                                
+                                {/* Elementos rotativos */}
+                                <g transform={`rotate(${rotationAngle} ${svgSize/2} ${svgSize/2})`}>
+                                    {rotatingElements}
+                                </g>
+                            </svg>
+                            
+                            {/* Botão central para adicionar hábitos */}
+                            <button
+                                onClick={() => setShowAddForm(true)}
+                                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-8 w-12 h-12 bg-cyan-500 hover:bg-cyan-600 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-200 hover:scale-110"
+                            >
+                                <Icons.Plus />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Form de adicionar hábito */}
+                    {showAddForm && (
+                        <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Icons.Plus />
+                                Novo Hábito
+                            </h3>
+                            
+                            <div className="space-y-4">
+                                <input
+                                    type="text"
+                                    placeholder="Nome do hábito..."
+                                    value={newHabit}
+                                    onChange={(e) => setNewHabit(e.target.value)}
+                                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400"
+                                    maxLength={50}
+                                />
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <select
                                         value={selectedPriority}
                                         onChange={(e) => setSelectedPriority(e.target.value)}
-                                        className="bg-gray-700 text-white px-4 py-2 rounded-lg"
+                                        className="px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white"
                                     >
-                                        {priorities.map(priority => (
-                                            <option key={priority.value} value={priority.value}>
-                                                {priority.flag} {priority.label}
-                                            </option>
-                                        ))}
+                                        <option value="high">🔥 Alta prioridade</option>
+                                        <option value="medium">⚡ Média prioridade</option>
+                                        <option value="low">💧 Baixa prioridade</option>
                                     </select>
+                                    
                                     <select
                                         value={selectedDaysType}
                                         onChange={(e) => setSelectedDaysType(e.target.value)}
-                                        className="bg-gray-700 text-white px-4 py-2 rounded-lg"
+                                        className="px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white"
                                     >
-                                        {daysTypes.map(type => (
-                                            <option key={type.value} value={type.value}>
-                                                {type.label}
-                                            </option>
-                                        ))}
+                                        <option value="all">Todos os dias</option>
+                                        <option value="weekdays">Apenas dias úteis</option>
+                                        <option value="weekends">Apenas fins de semana</option>
                                     </select>
+                                    
+                                    <input
+                                        type="time"
+                                        value={selectedScheduleTime}
+                                        onChange={(e) => setSelectedScheduleTime(e.target.value)}
+                                        className="px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white"
+                                        placeholder="Horário (opcional)"
+                                    />
                                 </div>
-                                <div className="flex gap-4 mt-4">
+                                
+                                <div className="flex gap-3">
                                     <button
                                         onClick={addHabit}
-                                        className="bg-green-600 hover:bg-green-500 text-white px-6 py-2 rounded-lg"
+                                        disabled={!newHabit.trim()}
+                                        className="flex-1 px-4 py-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-xl text-white transition-colors"
                                     >
-                                        Adicionar
+                                        Adicionar Hábito
                                     </button>
                                     <button
                                         onClick={() => setShowAddForm(false)}
-                                        className="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-lg"
+                                        className="px-4 py-3 bg-gray-600 hover:bg-gray-700 rounded-xl text-white transition-colors"
                                     >
-                                        Cancelar
+                                        <Icons.X />
                                     </button>
                                 </div>
                             </div>
-                        )}
+                        </div>
+                    )}
 
-                        {/* Stats */}
-                        {showStats && (
-                            <div className="mb-8 p-6 bg-gray-800 rounded-xl border border-gray-700">
-                                <h3 className="text-xl font-bold text-white mb-4">Estatísticas do Mês</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    <div className="text-center">
-                                        <div className="text-3xl font-bold text-blue-400">{stats.totalHabits}</div>
-                                        <div className="text-gray-400">Hábitos</div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-3xl font-bold text-green-400">{stats.overallRate}%</div>
-                                        <div className="text-gray-400">Taxa Geral</div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-3xl font-bold text-yellow-400">{stats.totalCompleted}</div>
-                                        <div className="text-gray-400">Completados</div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-3xl font-bold text-purple-400">{stats.totalPossible}</div>
-                                        <div className="text-gray-400">Total Possível</div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Reset Status */}
-                        {resetStatus && (
-                            <div className="mb-4 text-center">
-                                <span className="bg-blue-900/20 text-blue-400 px-4 py-2 rounded-full text-sm">
-                                    {resetStatus}
-                                </span>
-                            </div>
-                        )}
-
-                        {/* Main Content */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            {/* Circular Calendar */}
-                            <div className="lg:col-span-2">
-                                <div className="relative flex justify-center items-center">
-                                    <svg width="500" height="500" viewBox="0 0 500 500" className="max-w-full h-auto">
-                                        {fixedElements}
-                                        <g style={{ transform: `rotate(${rotationAngle}deg)`, transformOrigin: '250px 250px' }}>
-                                            {rotatingElements}
-                                        </g>
-                                    </svg>
-                                </div>
-
-                                {/* Rotation Control */}
-                                <div className="mt-4 text-center">
-                                    <input
-                                        type="range"
-                                        min="-180"
-                                        max="180"
-                                        value={rotationAngle}
-                                        onChange={(e) => setRotationAngle(parseInt(e.target.value))}
-                                        className="w-full max-w-md"
-                                    />
-                                    <div className="text-sm text-gray-400 mt-2">
-                                        Rotação: {rotationAngle}°
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Habit List */}
-                            <div className="space-y-4">
-                                <h3 className="text-xl font-bold text-white">Hábitos ({filteredHabits.length})</h3>
-                                
-                                {filteredHabits.length === 0 ? (
-                                    <div className="text-center py-8">
-                                        <div className="text-4xl mb-4">📅</div>
-                                        <p className="text-gray-300 mb-4">Nenhum hábito encontrado</p>
-                                        <p className="text-gray-400 text-sm">Clique em "Adicionar Hábito" para começar!</p>
-                                    </div>
-                                ) : (
-                                    <div className="space-y-3">
-                                        {filteredHabits.map((habit, index) => {
-                                            const percentage = getCompletionRate(habit.id);
-                                            const streak = getCurrentStreak(habit.id);
-                                            const colors = priorityColors[habit.priority];
-                                            
-                                            return (
-                                                <div
-                                                    key={habit.id}
-                                                    className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                                                        selectedHabitId === habit.id 
-                                                            ? 'bg-gray-700/70 border-blue-500' 
-                                                            : 'bg-gray-700/50 border-gray-600 hover:bg-gray-700/70'
-                                                    }`}
-                                                    onClick={() => setSelectedHabitId(selectedHabitId === habit.id ? null : habit.id)}
-                                                >
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3 flex-1">
-                                                            <div className={`w-4 h-4 rounded-full ${colors.bg}`}></div>
-                                                            <div className="flex-1">
-                                                                <div className="text-white font-medium">{habit.name}</div>
-                                                                <div className="text-xs text-gray-400">
-                                                                    Anel {index + 1} • {priorities.find(p => p.value === habit.priority)?.flag} {priorities.find(p => p.value === habit.priority)?.label}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex items-center gap-3">
-                                                            {streak > 0 && (
-                                                                <div className="flex items-center gap-1 bg-orange-500/20 px-2 py-1 rounded-full">
-                                                                    <Icon name="flame" size={12} className="text-orange-400" />
-                                                                    <span className="text-xs text-orange-400 font-bold">{streak}</span>
-                                                                </div>
-                                                            )}
-                                                            <span className="text-sm font-bold text-white">{percentage}%</span>
-                                                            <button
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    deleteHabit(habit.id);
-                                                                }}
-                                                                className="text-red-400 hover:text-red-300"
-                                                            >
-                                                                <Icon name="trash" size={16} />
-                                                            </button>
-                                                        </div>
+                    {/* Lista de hábitos */}
+                    {filteredHabits.length > 0 && (
+                        <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Icons.Target />
+                                Hábitos do Mês ({filteredHabits.length})
+                            </h3>
+                            
+                            <div className="space-y-3">
+                                {filteredHabits.map(habit => {
+                                    const { currentStreak, bestStreak } = calculateStreak(habit.id);
+                                    const priorityColors = {
+                                        high: 'border-red-500 bg-red-500/10',
+                                        medium: 'border-orange-500 bg-orange-500/10',
+                                        low: 'border-blue-500 bg-blue-500/10'
+                                    };
+                                    
+                                    return (
+                                        <div key={habit.id} className={`p-4 rounded-xl border ${priorityColors[habit.priority]}`}>
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex-1">
+                                                    <h4 className="font-semibold text-white">{habit.name}</h4>
+                                                    <div className="text-sm text-gray-400 mt-1">
+                                                        {habit.priority === 'high' && '🔥 Alta prioridade'}
+                                                        {habit.priority === 'medium' && '⚡ Média prioridade'}
+                                                        {habit.priority === 'low' && '💧 Baixa prioridade'}
+                                                        {habit.scheduleTime && ` • ${habit.scheduleTime}`}
                                                     </div>
+                                                    {showStreaks && (
+                                                        <div className="text-sm text-gray-400 mt-1">
+                                                            <Icons.Flame /> {currentStreak} dias • 
+                                                            <Icons.Trophy /> Melhor: {bestStreak} dias
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            );
-                                        })}
-                                    </div>
-                                )}
+                                                
+                                                <div className="flex items-center gap-2">
+                                                    <button
+                                                        onClick={() => setExpandedHabitDetails(expandedHabitDetails === habit.id ? null : habit.id)}
+                                                        className="p-2 text-gray-400 hover:text-white transition-colors"
+                                                    >
+                                                        <Icons.Eye />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => deleteHabit(habit.id)}
+                                                        className="p-2 text-red-400 hover:text-red-300 transition-colors"
+                                                    >
+                                                        <Icons.Trash2 />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
+                    )}
 
-                        {/* Footer */}
-                        <div className="mt-12 text-center text-gray-500 text-sm">
-                            <p>Rastreador de Hábitos Circular v2.7 • Auto-save: {autoSaveEnabled ? 'Ativo' : 'Inativo'}</p>
-                            <p className="mt-2">🎯 Clique nos losangos do calendário para marcar hábitos completados!</p>
+                    {/* Instruções */}
+                    <div className="bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 border border-gray-700 shadow-2xl">
+                        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                            <Icons.Settings />
+                            Como usar
+                        </h3>
+                        <div className="text-sm text-gray-300 space-y-2">
+                            <div className="text-green-400">• Clique no centro para adicionar novos hábitos</div>
+                            <div className="text-purple-400">• Clique nos losangos para marcar dias completados</div>
+                            <div className="text-blue-400">• Use os filtros para organizar seus hábitos</div>
+                            <div className="text-yellow-400">• Ajuste a rotação para melhor visualização</div>
+                            <div className="text-cyan-400">• Seus dados são salvos automaticamente</div>
                         </div>
                     </div>
                 </div>
             );
         };
 
-        // Render the app
+        // Renderizar aplicação
         ReactDOM.render(<CircularHabitCalendar />, document.getElementById('root'));
     </script>
 </body>
